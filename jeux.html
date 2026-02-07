@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Valentine's Day 💖</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <h1>💖 Welcome to the Valentine's Day Games 💖</h1>
+
+
+
+    <div class="card quiz-container" id="quiz1">
+        <h2>Question 1 : Mes fleurs préférées ?</h2>
+        <div class="options-group">
+            <div class="option" onclick="selectOption(this, 'roses', 1)">
+                <img id="roses" src="img/roses.PNG" alt="Roses">
+                <span>Les Roses</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'tulipes', 1)">
+                <img id="tulipes" src="img/tulipes.png" alt="Tulipes">
+                <span>Les Tulipes</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'lys', 1)">
+                <img id="lys" src="img/lys.PNG" alt="Lys">
+                <span>Les Lys</span>
+            </div>
+        </div>
+        <button onclick="verifierReponse(1, 'tulipes')">Valider</button>
+        <p id="resultat1"></p>
+    </div>
+
+    <br>
+    <div class="card quiz-container" id="quiz2" style="display: none;">
+        <h2>Question 2 : Notre Anniversaire</h2>
+        <div class="options-group">
+            <div class="option" onclick="selectOption(this, '16', 2)">
+                <span>16 octobre 2025</span>
+            </div>
+            <div class="option" onclick="selectOption(this, '17', 2)">
+                <span>17 octobre 2025</span>
+            </div>
+            <div class="option" onclick="selectOption(this, '18', 2)">
+                <span>18 octobre 2025</span>
+            </div>
+        </div>
+        <button onclick="verifierReponse(2, '16')">Valider</button>
+        <p id="resultat2"></p>
+    </div>
+
+    <br>
+    <div class="card quiz-container" id="quiz3" style="display: none;">
+        <h2>Question 3 : Ma Couleur préféré ?</h2>
+        <div class="options-group">
+            <div class="option" onclick="selectOption(this, 'navy', 3)">
+                <img id="couleur" src="img/navy.png" alt="navy">
+            </div>
+            <div class="option" onclick="selectOption(this, 'green', 3)">
+                <img id="couleur" src="img/green.png" alt="green">
+            </div>
+            <div class="option" onclick="selectOption(this, 'violet', 3)">
+                <img id="couleur" src="img/violet.png" alt="violet">
+            </div>
+        </div>
+        <button onclick="verifierReponse(3, 'navy')">Valider</button>
+        <p id="resultat3"></p>
+    </div>
+
+    <br>
+    <div class="card quiz-container" id="quiz4" style="display: none;">
+        <h2>Question 4 : Mon surnom préféré ?</h2>
+        <div class="options-group">
+            <div class="option" onclick="selectOption(this, 'mon_coeur', 4)">
+                <span>Mon Cœur</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'mon_amour', 4)">
+                <span>Mon Amour</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'miss', 4)">
+                <span>Miss</span>
+            </div>
+        </div>
+        <button onclick="verifierReponse(4, 'miss')">Valider</button>
+        <p id="resultat4"></p>
+    </div>
+
+    <br>
+    <div class="card quiz-container" id="quiz5" style="display: none;">
+        <h2>Question 5 : Je suis la meilleur copine de l'univers ?</h2>
+        <div class="options-group">
+            <div class="option" onclick="selectOption(this, 'vrai', 5)">
+                <span>Vrai</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'faux', 5)">
+                <span>Faux</span>
+            </div>
+        </div>
+        <button onclick="verifierReponse(5, 'vrai')">Valider</button>
+        <p id="resultat5"></p>
+    </div>
+
+    <script>
+        // On utilise un objet pour stocker les choix de chaque question séparément
+        let choixParQuestion = {
+            1: "",
+            2: "",
+            3: "",
+            4: "",
+            5: ""
+        };
+
+        function selectOption(element, reponse, questionId) {
+            // 1. On cherche les options uniquement DANS la carte de la question actuelle
+            const conteneur = element.parentElement;
+            const options = conteneur.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+
+            // 2. Sélection visuelle
+            element.classList.add('selected');
+
+            // 3. Enregistrement du choix pour cette question précise
+            choixParQuestion[questionId] = reponse;
+        }
+
+        function verifierReponse(questionId, bonneReponse) {
+            const feedback = document.getElementById('resultat' + questionId);
+            const choix = choixParQuestion[questionId];
+
+            if (choix === "") {
+                feedback.innerText = "Choisis une option d'abord !";
+                feedback.style.color = "orange";
+            } else if (choix === bonneReponse) {
+                feedback.innerText = "Bravo ! C'est la bonne réponse. ✨";
+                feedback.style.color = "green";
+
+                // SI C'EST LA QUESTION 5 -> REDIRECTION
+                if (questionId === 5) {
+                    setTimeout(() => {
+                        window.location.href = "lettre.html";
+                    }, 1000); // On attend 1 seconde pour que l'utilisateur voit le message "Bravo"
+                    return;
+                }
+
+                // SINON -> AFFICHER LA QUESTION SUIVANTE
+                let suivante = document.getElementById('quiz' + (questionId + 1));
+                if (suivante) {
+                    suivante.style.display = 'block';
+                    suivante.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                feedback.innerText = "Pffffff t'es nul ! Essaie encore. ❌";
+                feedback.style.color = "#ff4d6d";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

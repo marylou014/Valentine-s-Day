@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Valentine's Day 💖</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <h1>💖 Valentine's Day Games 💖</h1>
+
+    <div class="card">
+        <label for="nom">Qui êtes vous ?</label><br>
+        <input type="text" id="nom" name="nom" placeholder="Nom"><br>
+        <input type="text" id="prenom" name="prenom" placeholder="Prénom"><br><br>
+        <button class="valider" onclick="verifierDonnee()">Participer aux jeux ! </button>
+
+    </div>
+    <script>
+        function verifierDonnee() {
+            const prenom = document.getElementById("prenom").value.trim(); // on enlève les espaces
+            const nom = document.getElementById("nom").value.trim(); // on enlève les espaces
+            const bonPrenom = "Mylo";
+            const bonNom = "Wierez"
+
+            if (prenom === bonPrenom) {
+                window.location.href = "jeux.html";
+            } else {
+                alert("😢 Oupsss les données renseigné son fausse, ou vous n'etes pas inscrit aux jeux...");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

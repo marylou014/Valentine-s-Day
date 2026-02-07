@@ -1,0 +1,271 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffccd5, #ffe6eb);
+    font-family: "Times New Roman", serif;
+    overflow-x: hidden;
+}
+
+/* Titre */
+h1 {
+    color: #b3003b;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 42px;
+    text-shadow: 0 4px 10px rgba(179, 0, 59, 0.2);
+}
+
+/* Carte principale */
+.card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 45px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    width: 320px;
+    animation: appear 0.8s ease;
+}
+
+/* Labels */
+label {
+    font-size: 20px;
+    color: #66001a;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 30px;
+    border: 1px solid #ffb3c6;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #ff4d6d;
+    box-shadow: 0 0 8px rgba(255, 77, 109, 0.4);
+}
+
+button {
+    margin-top: 25px;
+    font-size: 18px;
+    padding: 12px 35px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff4d6d, #ff758f);
+    color: white;
+    transition: 0.3s;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    position: relative;
+}
+
+
+button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(255, 77, 109, 0.6);
+}
+
+
+/* --------------- jeux.html---------------*/
+
+/* Conteneur pour aligner les 3 blocs */
+.options-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Style de chaque bloc cliquable */
+.option {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #ffb3c6;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.option img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.option span {
+    font-weight: bold;
+    color: #66001a;
+}
+
+/* Effet au survol */
+.option:hover {
+    background: #fff0f3;
+    transform: translateY(-5px);
+}
+
+/* Style quand une option est sélectionnée */
+.option.selected {
+    border-color: #ff4d6d;
+    background: #ffeef2;
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.3);
+}
+
+/* Ajustement de la largeur de la card pour laisser de la place aux 3 blocs */
+.card.quiz-container {
+    width: 600px;
+    /* On l'élargit un peu */
+}
+
+#roses {
+    height: auto;
+}
+
+#tulipes {
+    height: auto;
+}
+
+#lys {
+    height: auto;
+}
+
+#couleur {
+    width: 100%;
+    height: 100%;
+}
+
+/* --------------- lettre.html---------------*/
+
+/* L'enveloppe */
+.envelope-wrapper {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: #ff4d6d;
+    border-radius: 0 0 10px 10px;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+}
+
+.envelope-body {
+    width: 100%;
+    height: 100%;
+    background-color: #ff4d6d;
+    border-radius: 0 0 10px 10px;
+    z-index: 2;
+}
+
+.lid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid #ff758f;
+    transform-origin: top;
+    transition: transform 0.6s ease;
+    z-index: 3;
+}
+
+.envelope-wrapper.open .lid {
+    transform: rotateX(180deg);
+}
+
+.envelope-wrapper.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* La Carte Finale */
+.final-card.hidden {
+    display: none;
+}
+
+.final-card.show-up {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: slideUp 1s ease-out forwards;
+    z-index: 10;
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translate(-50%, 100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    /* Force l'alignement horizontal */
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.yes,
+.no {
+    width: auto;
+    /* IMPORTANT : empêche le bouton de prendre toute la largeur */
+    min-width: 120px;
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.yes,
+.no {
+    width: auto;
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.yes {
+    background: #ff4d6d;
+    color: white;
+    position: relative;
+}
+
+.no {
+    background: #ffc2d1;
+    color: #66001a;
+
+}
+
+#noBtn {
+    transition: left 0.1s ease, top 0.1s ease;
+}

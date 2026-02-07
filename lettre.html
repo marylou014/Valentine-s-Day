@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Surprise ! 💖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1 id="title">Bravo, tu as réussi ! ✨</h1>
+
+    <div id="envelopeContainer" class="envelope-wrapper" onclick="ouvrirEnveloppe()">
+        <div class="lid"></div>
+        <div class="envelope-body"></div>
+    </div>
+
+    <div id="valentineCard" class="card final-card hidden">
+        <img src="img/cute.gif" alt="cute gif" style="width: 150px; border-radius: 10px;">
+        <p>Will you be my Valentine ? 💌</p>
+        <div class="buttons">
+            <button class="yes" onclick="accepter()">❤️ Yes ❤️</button>
+            <button class="no" id="noBtn" tabindex="-1">💔 No 💔</button>
+        </div>
+    </div>
+
+    <script>
+        function ouvrirEnveloppe() {
+            const env = document.getElementById('envelopeContainer');
+            const card = document.getElementById('valentineCard');
+            const title = document.getElementById('title');
+
+            env.classList.add('open');
+
+            setTimeout(() => {
+                env.classList.add('fade-out');
+                card.classList.remove('hidden');
+                card.classList.add('show-up');
+                title.style.opacity = "0";
+            }, 800);
+        }
+
+        function accepter() {
+            window.location.href = "page_succes.html"; // Remplace par ta page finale
+        }
+
+        const noBtn = document.getElementById("noBtn");
+        const buttons = noBtn.parentElement;
+
+        let activated = false;
+
+        noBtn.addEventListener("mouseover", () => {
+            if (!activated) {
+                const rect = noBtn.getBoundingClientRect();
+                const parentRect = buttons.getBoundingClientRect();
+
+                noBtn.style.position = "absolute";
+                noBtn.style.left = rect.left - parentRect.left + "px";
+                noBtn.style.top = rect.top - parentRect.top + "px";
+
+                activated = true;
+            }
+
+            const overflow = 150;
+
+            const maxX = buttons.offsetWidth - noBtn.offsetWidth + overflow;
+            const maxY = buttons.offsetHeight - noBtn.offsetHeight + overflow;
+
+            const minX = -overflow;
+            const minY = -overflow;
+
+            const randomX = Math.random() * (maxX - minX) + minX;
+            const randomY = Math.random() * (maxY - minY) + minY;
+
+            noBtn.style.left = randomX + "px";
+            noBtn.style.top = randomY + "px";
+        });
+
+    </script>
+</body>
+
+</html>
