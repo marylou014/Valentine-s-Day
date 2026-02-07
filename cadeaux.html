@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Valentine's Day 💖</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>💖 Youpiiii 💖</h1>
+        <img id="gif" src="img/kiss.gif" alt="kiss gif">
+
+        <div id="overlay" class="overlay">
+            <div class="popup-card">
+                <h2>Surprise ! 🎉</h2>
+
+                <div class="popup-image-container">
+                    <img id="popup-img" src="" alt="Surprise">
+                </div>
+
+                <button onclick="fermerPopUp()">💖</button>
+            </div>
+        </div>
+
+        <div class="options-group">
+            <div class="option" onclick="ouvrirPopUp('img/bon_bisou.PNG')">
+                <img class="img-cadeau" src="img/cadeaux.png" alt="cadeaux">
+                <span>Cadeau 1</span>
+            </div>
+            <div class="option" onclick="ouvrirPopUp('img/bon_calin.PNG')">
+                <img class="img-cadeau" src="img/cadeaux.png" alt="cadeaux">
+                <span>Cadeau 2</span>
+            </div>
+            <div class="option" onclick="ouvrirPopUp('img/bon.png')">
+                <img class="img-cadeau" src="img/cadeaux.png" alt="cadeaux">
+                <span>Cadeau 3</span>
+            </div>
+        </div>
+
+        <script>
+            function ouvrirPopUp(cheminImage) {
+                const overlay = document.getElementById('overlay');
+                const imgElement = document.getElementById('popup-img');
+
+                // On change la source de l'image dans la pop-up
+                imgElement.src = cheminImage;
+
+                // On affiche la pop-up
+                overlay.style.display = 'flex';
+            }
+
+            function fermerPopUp() {
+                const overlay = document.getElementById('overlay');
+                document.getElementById('popup-img').src = ""; // On vide la source en fermant
+                overlay.style.display = 'none';
+            }
+        </script>
+
+</body>
+
+</html>
