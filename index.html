@@ -18,14 +18,14 @@
         <button class="valider" onclick="verifierDonnee()">Participer aux jeux ! </button>
 
     </div>
-    <script>
+        <script>
         function verifierDonnee() {
             const prenom = document.getElementById("prenom").value.trim(); // on enlève les espaces
             const nom = document.getElementById("nom").value.trim(); // on enlève les espaces
             const bonPrenom = "Prénom";
             const bonNom = "Nom"
 
-            if (prenom === bonPrenom) {
+            if (prenom === bonPrenom && nom === bonNom) {
                 window.location.href = "jeux.html";
             } else {
                 alert("😢 Oupsss les données renseigné son fausse, ou vous n'etes pas inscrit aux jeux...");
